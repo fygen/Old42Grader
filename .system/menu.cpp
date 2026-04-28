@@ -148,6 +148,10 @@ void exam::infovip(void)
     std::cout << "same name as the assignment (" << RED << current_path() << "/rendu/" << current_ex->get_name() << RESET << "/)." << std::endl;
     std::cout << "Here you don't need to use git." << std::endl
               << std::endl;
+    std::cout << BOLD << LIME << "😸 PAY RESPECTS TO AHBASARA intra -> https://profile-v3.intra.42.fr/users/ahbasara " << RESET << std::endl
+              << std::endl;
+    std::cout << BOLD <<  RED << "🐾 and STARIZE HIS REPOS ->  https://github.com/murmurlab" << RESET << std::endl
+            << std::endl;
     std::cout << "The end date for this exam is: " << LIME << std::put_time(std::localtime(&end_time), "%d/%m/%Y %H:%M:%S") << RESET << std::endl;
     std::cout << "You have " << LIME << remaining_time(end_time) << RESET << " remaining" << std::endl;
     std::cout << std::endl
@@ -171,9 +175,9 @@ void connexion(void)
     std::cout << std::endl;
     usleep(600000);
     system("clear");
-    std::cout << BOLD << UNDERLINE << "ExamShell v2.1" << RESET << std::endl
+    std::cout << BOLD << UNDERLINE << "ExamShell v2.1" << RESET << LIME << " " << UNDERLINE <<"AHBASARA->intra" << RESET << std::endl
               << std::endl;
-    std::cout << BOLD << "login:" << RESET;
+    std::cout << BOLD << "AHBASARA login:" << RESET;
     fflush(stdout);
     usleep(600000);
     std::string login = getenv("USER");
@@ -186,7 +190,7 @@ void connexion(void)
 
     usleep(400000);
     std::cout << std::endl
-              << BOLD << "password:" << RESET;
+              << BOLD << "AHBASARA password:" << RESET;
     fflush(stdout);
     srand(time(NULL));
     int password_size = rand() % 10 + 4;
@@ -211,7 +215,7 @@ int exam::stud_or_swim(void)
         system("clear");
         std::cout << WHITE << BOLD << "         42EXAM " << std::endl;
         if(vip)
-            std::cout << "    You are a " << LIME << "VIP" << WHITE << BOLD << " user" << RESET << std::endl << std::endl;
+            std::cout << "    You are a " << LIME << "VIP AHBASARA" << WHITE << BOLD << " user" << RESET << std::endl << std::endl;
         else
             std::cout << "     Made by " << LIME << "jcluzet" << RESET << std::endl
                   << std::endl
@@ -235,7 +239,7 @@ int exam::stud_or_swim(void)
             std::cout << BOLD << RED;
         else 
             std::cout << WHITE << BOLD;
-        std::cout << "    Enter your choice:" << RESET << std::endl
+        std::cout << "    HEY AHBASARA's STUDENT Enter your choice:" << RESET << std::endl
                   << "            ";
         // std::cin >> choice;
         if (!std::getline(std::cin, choice))
@@ -346,7 +350,7 @@ int exam::stud_menu(void)
             std::cout << BOLD << RED;
         std::cout << std::endl
                   << std::endl;
-        std::cout << "    Enter your choice:" << RESET << std::endl
+        std::cout << "    HEY AHBASARA's STUDENT Enter your choice:" << RESET << std::endl
                   << "            ";
         if (!std::getline(std::cin, choice))
             sigd();
@@ -386,7 +390,7 @@ int exam::piscine_menu(void)
         if (choice == "-1")
             std::cout << BOLD << RED;
         std::cout << std::endl;
-        std::cout << "    Enter your choice:" << RESET << std::endl
+        std::cout << "    HEY AHBASARA's STUDENT Enter your choice:" << RESET << std::endl
                   << "            ";
         if (!std::getline(std::cin, choice))
             sigd();

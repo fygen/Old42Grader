@@ -12,6 +12,7 @@
 
 all:
 	@bash .system/launch.sh all
+# 	@bash git remote remove origin 2> /dev/null || true
 
 re: clean
 	@bash .system/launch.sh

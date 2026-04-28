@@ -1,40 +1,124 @@
-#!/bin/bash
-cd .system/grading/
-# if there is a traceback file then remove it
-if [ -e traceback ]; then
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    tester.sh                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jcluzet <jcluzet@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/20 02:26:11 by jcluzet           #+#    #+#              #
+#    Updated: 2022/09/02 00:19:37 by jcluzet          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FILE='ft_strlen.c'
+MAIN='main.c'
+MAIN1='../.system/grading/main.c'
+ASSIGN='ft_strlen/ft_strlen.c'
+
+index=0
+
+if [ -e traceback ]
+then
     rm traceback
 fi
 
-echo "Test may be long, please wait..."
-
-# for port in $(seq 4444 65000); do echo -ne "\035" | telnet 127.0.0.1 $port > /dev/null 2>&1; [ $? -eq 1 ] && break; done
-
-PORT=$(bash findport.sh)
-
-bash test_miniserv.sh $PORT &> /dev/null 2>&1 
-
-# if there is a final file and there is not a traceback file then the diff is check
-if [ -e final ] && [ ! -e traceback ]; then
-
-DIFF=$(diff bim normal.output)
+cd .system/grading
+gcc -o source $FILE $MAIN
+./source "" | cat -e > sourcexam       #TESTING
+rm source
+cd ../../rendu
+{
+gcc -o final $ASSIGN $MAIN1
+}  &>../.system/grading/traceback
+{
+./final "" | cat -e > finalexam        #TESTING
+mv finalexam ../.system/grading/
+rm final
+}  &>/dev/null
+cd ../.system/grading
+DIFF=$(diff sourcexam finalexam)
+echo "" >> traceback
 if [ "$DIFF" != "" ]
 then
+		index=$(($index + 1))
+		cat sourcexam >> traceback
+		echo '\n' >> traceback
+		if [ -e finalexam ]
+		then
+		cat finalexam >> traceback
+		else
+		echo "" >> traceback
+		fi
+		echo '\n' >> traceback
+		echo "-------" >> traceback
+fi
+rm finalexam
 
-        echo "----------------8<-------------[ START TEST " >> traceback
-        printf "        💻 TEST\n./a.out $PORT\n" >> traceback
-        printf " Then there is 3 connexion to the server\n" >> traceback
-        printf "        🔎 YOUR OUTPUT:\n" >> traceback
-        cat bim >> traceback
-        printf "        🗝 EXPECTED OUTPUT:\n" >> traceback
-        cat normal.output >> traceback
-        echo "----------------8<------------- END TEST ]" >> traceback
-        mv traceback ../../traceback
-        cd ../../
-        exit 1
+
+
+gcc -o source $FILE $MAIN
+./source "abc" | cat -e > sourcexam    #TESTING
+rm source
+cd ../../rendu
+{
+gcc -o final $ASSIGN $MAIN1
+./final "abc" | cat -e > finalexam     #TESTING
+mv finalexam ../.system/grading/
+rm final
+}  &>/dev/null
+cd ../.system/grading
+DIFF=$(diff sourcexam finalexam)
+echo "" >> traceback
+if [ "$DIFF" != "" ]
+then
+		index=$(($index + 1))
+		cat sourcexam >> traceback
+		echo '\n' >> traceback
+		if [ -e finalexam ]
+		then
+		cat finalexam >> traceback
+		else
+		echo "" >> traceback
+		fi
+		echo '\n' >> traceback
+		echo "-------" >> traceback
 fi
 
-touch passed
-else
+gcc -o source $FILE $MAIN
+./source "   c0vdsjnodgfiodgfiudgjfduigjfduigjfdiugjfdugjfdugjfduigjfdgjufdugfdgfd\0f" | cat -e > sourcexam    #TESTING
+rm source
+cd ../../rendu
+{
+gcc -o final $ASSIGN $MAIN1
+./final "   c0vdsjnodgfiodgfiudgjfduigjfduigjfdiugjfdugjfdugjfduigjfdgjufdugfdgfd\0f" | cat -e > finalexam     #TESTING
+mv finalexam ../.system/grading/
+rm final
+}  &>/dev/null
+cd ../.system/grading
+DIFF=$(diff sourcexam finalexam)
+echo "" >> traceback
+if [ "$DIFF" != "" ]
+then
+		index=$(($index + 1))
+		cat sourcexam >> traceback
+		echo '\n' >> traceback
+		if [ -e finalexam ]
+		then
+		cat finalexam >> traceback
+		else
+		echo "" >> traceback
+		fi
+		echo '\n' >> traceback
+		echo "-------" >> traceback
+fi
+
+
+
+if [ $index -eq 0 ]
+then
+	touch passed
+fi
+{
 mv traceback ../../traceback
-fi
-cd ../../
+}	&>/dev/null
+rm sourcexam

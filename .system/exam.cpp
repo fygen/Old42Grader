@@ -101,6 +101,10 @@ void exam::explanation(void)
               << std::endl;
     std::cout << "     📌 Nice reminder : Here you don't need to use GIT.\n         Remember that during the exam you will have to use it to push your project !\n\n"
               << std::endl;
+    std::cout << BOLD << LIME << "😸 PAY RESPECTS TO AHBASARA intra -> https://profile-v3.intra.42.fr/users/ahbasara " << RESET << std::endl
+              << std::endl;
+    std::cout << BOLD <<  RED << "🐾 and STARIZE HIS REPOS ->  https://github.com/murmurlab" << RESET << std::endl
+            << std::endl;
 
     std::cout << "\x1B[32m       RGPD Information :\e[97m\e[1m" << std::endl;
     std::cout << "         The data that can be collected are :\n"
