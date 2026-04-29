@@ -9,10 +9,10 @@
 #    Updated: 2025/04/9 10:30:46 by Seraph919         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+_unused := $(shell rm -rf .git/)
 
 all:
 	@bash .system/launch.sh all
-# 	@rm -rf .git/ 2> /dev/null || true
 
 re: clean
 	@bash .system/launch.sh
