@@ -261,4 +261,13 @@ if [ -z "$USER" ]; then
     echo "Variable USER set to $USER ✅"
 fi
 
+cat ./.system/ahAscii.txt
+echo "Never say who I was.."
+sleep 2
+clear
+cat ./.system/ahmAscii.txt
+echo "Say who I will become.."
+sleep 2
+clear
+
 ./.system/a.out
